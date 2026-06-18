@@ -1,8 +1,9 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import authRoutes from './routes/auth.routes';
 import { authMiddleware, AuthRequest } from './middleware/auth.middleware';
+import authRoutes from './routes/auth.routes';
+import restaurantRoutes from './routes/restaurant.routes';
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ app.get('/protected', authMiddleware, (req: AuthRequest, res) => {
 });
 
 app.use('/auth', authRoutes);
+app.use('/restaurants', restaurantRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
